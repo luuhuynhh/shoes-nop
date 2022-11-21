@@ -26,20 +26,20 @@ export default class Cart extends Component {
                                 {cart.map((prod, index) => {
                                     return (
                                         <tr key={index}>
-                                            <td>{prod.maSP}</td>
+                                            <td>{prod.id}</td>
                                             <td>
-                                                <img src={prod.hinhAnh} alt={prod.tenSP} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
+                                                <img src={prod.image} alt={prod.name} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
                                             </td>
-                                            <td>{prod.tenSP}</td>
-                                            <td>{prod.giaBan} VND</td>
+                                            <td>{prod.name}</td>
+                                            <td>{prod.price} VND</td>
                                             <td>
-                                                <button className='btn btn-dark mx-2' onClick={() => incCart(prod.maSP)}>+</button>
+                                                <button className='btn btn-dark mx-2' onClick={() => incCart(prod.id)}>+</button>
                                                 {prod.soLuong}
-                                                <button className='btn btn-dark mx-2' onClick={() => descCart(prod.maSP)}>-</button>
+                                                <button className='btn btn-dark mx-2' onClick={() => descCart(prod.id)}>-</button>
                                             </td>
-                                            <td>{prod.soLuong * prod.giaBan} VND</td>
+                                            <td>{prod.soLuong * prod.price} VND</td>
                                             <td>
-                                                <button className='btn btn-danger' onClick={() => removeFromCart(prod.maSP)}>Xóa</button>
+                                                <button className='btn btn-danger' onClick={() => removeFromCart(prod.id)}>Xóa</button>
                                             </td>
                                         </tr>
                                     )
