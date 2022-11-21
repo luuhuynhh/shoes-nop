@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Cart from './Cart'
+import CartChiTiet from './CartChiTiet';
 import ProductList from './ProductList'
 
 const data =
@@ -131,7 +132,8 @@ export default class ShoesStore extends Component {
     constructor() {
         super();
         this.state = {
-            cart: [{ ...data[0], soLuong: 2 }]
+            cart: [{ ...data[0], soLuong: 2 }],
+            prod: null
         }
     }
     addToCart = (prod) => {
@@ -183,6 +185,13 @@ export default class ShoesStore extends Component {
         }
         this.setState(pre => pre);
     }
+
+    setPro = (prod) => {
+        this.setState({
+            ...this.state,
+            prod
+        })
+    }
     render() {
         return (
             <div className='container'>
@@ -191,7 +200,12 @@ export default class ShoesStore extends Component {
                         <Cart cart={this.state.cart} removeFromCart={this.removeFromCart} incCart={this.incCart} descCart={this.descCart} />
                     </div>
                 </div>
-                <ProductList modalId={this.props.modalId} data={data} addToCart={this.addToCart} />
+                <div className="modal fade" id='modalChiTiet' tabIndex="-1" role="dialog" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <CartChiTiet prod={this.state.prod} />
+                    </div>
+                </div>
+                <ProductList setPro={this.setPro} modalId={this.props.modalId} data={data} addToCart={this.addToCart} />
             </div>
         )
     }
